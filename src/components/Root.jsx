@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Navigation from "./Navigation";
+// import Navigation from "./Navigation";
 import MainPage from "./MainPage"
 
 export default class Root extends React.Component{
@@ -15,7 +15,7 @@ export default class Root extends React.Component{
 
                 <div className="row">
                     <div className="col-xs-10 col-xs-offset-1">
-                        <Navigation/>
+                        {/* <Navigation/> */}
                     </div>
                 </div>  
           </div>
