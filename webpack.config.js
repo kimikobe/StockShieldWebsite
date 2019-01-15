@@ -21,14 +21,24 @@ module.exports = {
             exclude: /node_modules/,
             use: {
                 loader: "babel-loader"
-            }
+            },
+            // query: {
+            //     // cacheDirectory: true,
+            //     presets: ['env', 'stage-0', 'react'],
+            //     plugins: ['transform-decorators-legacy']
+            // }
         },
         {
             test: /\.js$/,
             exclude: /node_modules/,
             use: {
                 loader: "babel-loader"
-            }
+            },
+            // query: {
+            //     // cacheDirectory: true,
+            //     presets: ['env', 'stage-0', 'react'],
+            //     plugins: ['transform-decorators-legacy']
+            // }
         },
         {
             test: /\.scss$/,

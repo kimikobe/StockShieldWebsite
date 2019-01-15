@@ -1,43 +1,48 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {HashRouter as Router, Route, NavLink} from 'react-router-dom';
-//import './styles/styles.scss';
+import {observer, inject} from "mobx-react";
+import {HashRouter as Router, Route, NavLink, Switch} from 'react-router-dom';
+
 import MainPage from './components/MainPage';
 import Root from './components/Root';
 import AccountPage from './components/AccountPage';
-import Navigation from './components/Navigation';
+import Login from './components/Login';
 
+import MobxProvider from "./store/MobxProvider";
+import StateStore from "./store/StateStore";
+import './styles/styles.scss';
+
+@inject("stateStore") @observer
 class App extends React.Component {
 
+    constructor(props) {
+      super(props);
+    }
+
     render() {
+      
+      console.log(StateStore.isLogon);
+      console.log(this.props.stateStore.isLogon);
+
         return (
-            // <div>
-            //     <div>
-            //       <Navigation />
-            //     </div>
-            //     <div>
-                  
-            //       <Router>
-            //         <Route path="/main" component={MainPage} />
-            //         {/* <Route path="/mainhh" component={Root}/> */}
-            //       </Router>
-            //       <Router>
-            //         <Route path="/account" component={AccountPage} />
-            //       </Router>
-            //     </div>
-            // </div>
             <Router>
               <div>
-                <h1>Simple SPA</h1>
-                <ul className="header">
-                  <li><NavLink to="/">Home</NavLink></li>
-                  <li><NavLink to="/stuff">Stuff</NavLink></li>
-                  <li><NavLink to="/contact">Contact</NavLink></li>
-                </ul>
+                <div className="nav">
+                  <h1>StockShield</h1>
+                  <ul className="header">
+                    <li><NavLink to="/home">Home</NavLink></li>
+                    <li><NavLink to="/stuff">Stuff</NavLink></li>
+                    <li><NavLink to="/contact">Contact</NavLink></li>
+                    <li><NavLink to="/login">Login</NavLink></li>
+                  </ul>
+                </div>
                 <div className="content">
-                  <Route path="/" component={MainPage}/>
-                  <Route path="/stuff" component={Root}/>
-                  <Route path="/contact" component={AccountPage}/>
+                  <Switch>
+                    <Route path="/login" component={Login} />
+                    <Route path="/home" component={MainPage}/>
+                    <Route path="/stuff" component={Root}/>
+                    <Route path="/contact" component={AccountPage}/>
+                  </Switch>
                 </div>
               </div>
             </Router>
@@ -45,4 +50,4 @@ class App extends React.Component {
       }
 }
 
-ReactDOM.render(<App />, document.getElementById('app'));
+ReactDOM.render(<MobxProvider view={<App />} />, document.getElementById('app'));
