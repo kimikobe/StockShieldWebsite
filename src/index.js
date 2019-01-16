@@ -1,18 +1,29 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import {HashRouter as Router, Route, NavLink, IndexRoute} from 'react-router-dom';
+import {observer, inject} from "mobx-react";
 import './styles/styles.scss';
 import MainPage from './components/MainPage';
-import Root from './components/Root';
 import AccountPage from './components/AccountPage';
-import Navigation from './components/Navigation';
 import ProductPage from './components/ProductPage';
+import LoginPage from './components/LoginPage';
+import MobxProvider from "./store/MobxProvider";
+import StateStore from "./store/StateStore";
 //import Logo from './StockShield.png';
 //import searchLogo from './searchlogo.png';
 
+@inject("stateStore") @observer
 class App extends React.Component {
 
-    render() {
+  constructor(props) {
+    super(props);
+  }
+
+  render() {
+    
+    console.log(StateStore.isLogon);
+    console.log(this.props.stateStore.isLogon);
+
         return (
             /*<Router>
               <div>
@@ -48,20 +59,21 @@ class App extends React.Component {
               <div>
                   <h1>StockShield</h1>
                   <ul className="header">
-                    <li><NavLink to="/" activeStyle={{color: "red"}}>Home</NavLink></li>
+                    <li><NavLink to="/" >Home</NavLink></li>
                     <li><NavLink to="/account" activeStyle={{color: "red"}}>My Account</NavLink></li>
                     <li><NavLink to="/product" activeStyle={{color: "red"}}>Product</NavLink></li>
+                    <li><NavLink to="/login" activeStyle={{color: "red"}}>Login</NavLink></li>
                   </ul>
                   <hr/>
                                         
                   <Route exact path="/" component={MainPage}/>                 
                   <Route path="/account" component={AccountPage}/>
-                  <Route path="/product" component={ProductPage}/>
-              
+                  <Route path="/product" component={ProductPage}/> 
+                  <Route path="/login" component={LoginPage}/>              
               </div>           
             </Router>
                     );
                   }
             }
 
-ReactDOM.render(<App />, document.getElementById('app'));
+ReactDOM.render(<MobxProvider view={<App />} />, document.getElementById('app'));
