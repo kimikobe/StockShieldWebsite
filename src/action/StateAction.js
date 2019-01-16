@@ -6,7 +6,7 @@ export default class StateActions{
     @action
     static setLogin() {
        
-        StateStore.isLogon = true;
+        StateStore.isLogin = true;
     }
 
 }

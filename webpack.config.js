@@ -4,12 +4,10 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 // const CleanWebpackPlugin = require('clean-webpack-plugin');
 
 module.exports = {
-    entry: { 
-        main: './src/index.js' 
-        },
+    entry: path.join(__dirname, 'src', 'index.js'),
     output: {
-        path: path.resolve(__dirname, 'dist'),
-        filename: '[name].[chunkhash].js'
+        path: path.resolve(__dirname, 'build'),
+        filename: 'index.bundle.js'
     },
     resolve: {
         extensions: ['.js', '.jsx']
@@ -17,28 +15,11 @@ module.exports = {
     module: {
         rules: [
         {
-            test: /\.jsx$/,
+            test: /\.jsx|js$/,
             exclude: /node_modules/,
             use: {
                 loader: "babel-loader"
             },
-            // query: {
-            //     // cacheDirectory: true,
-            //     presets: ['env', 'stage-0', 'react'],
-            //     plugins: ['transform-decorators-legacy']
-            // }
-        },
-        {
-            test: /\.js$/,
-            exclude: /node_modules/,
-            use: {
-                loader: "babel-loader"
-            },
-            // query: {
-            //     // cacheDirectory: true,
-            //     presets: ['env', 'stage-0', 'react'],
-            //     plugins: ['transform-decorators-legacy']
-            // }
         },
         {
             test: /\.scss$/,
@@ -56,14 +37,15 @@ module.exports = {
         }
         ]
     },
+    devServer: {
+        contentBase: path.join(__dirname, 'src')
+    },
     plugins: [ 
-        // new CleanWebpackPlugin('dist', {} ),
         new HtmlWebpackPlugin({
-        inject: false,
-        hash: true,
-        template: './src/index.html',
-        filename: 'index.html'
+            inject: false,
+            hash: true,
+            template: path.join(__dirname, 'src', 'index.html'),
+            filename: 'index.html'
         }),
-        // new WebpackMd5Hash()
     ]
 };

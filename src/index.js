@@ -22,7 +22,7 @@ class App extends React.Component {
     render() {
       
       console.log(StateStore.isLogon);
-      console.log(this.props.stateStore.isLogon);
+      console.log(this.props.stateStore.isLogin);
 
         return (
             <Router>

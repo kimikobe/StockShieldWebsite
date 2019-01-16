@@ -3,7 +3,7 @@ import StateAction from '../action/StateAction';
 import {observer, inject} from "mobx-react";
 
 @inject("stateStore") @observer
-export default class AccountPage extends React.Component{
+export default class LoginPage extends React.Component{
     
     constructor(props) {
         super(props);
