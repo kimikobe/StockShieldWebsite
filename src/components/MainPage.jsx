@@ -4,8 +4,8 @@ export default class MainPage extends React.Component {
 
     render() {
         return (
-          <div>
-            <p>StockShield</p>
+          <div id="title">
+            <p>Welcome to StockShield!</p>
           </div>
         );
       }

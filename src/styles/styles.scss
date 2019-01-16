@@ -1,4 +1,35 @@
 #title {
-    font-size: 30px;
+    font-size: 20px;
     font-weight: bold;
+    color: darkcyan;
+    position: relative;
+    float: left;
+    height: 280px;
+}
+
+.header{
+    padding: 2% 0;
+}
+
+.header_logo{
+    float: right;
+    width: 125px;
+    height: 65px;
+}
+
+.menu_list{
+    padding-bottom: 4%;
+    color: #000;
+}
+
+.menu_list ui li{
+    display: inline-block;
+}
+
+.menu_list ui li{
+    font-size: 13px;
+    color:darkcyan;
+    font-family: 'Times New Roman', Times, serif;
+    padding: 17px 19px;
+    transition: all 0.3s ease;
 }
